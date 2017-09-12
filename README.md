@@ -6,8 +6,11 @@ Eduacational game that utilizes SLQ-Database
 Members:
 
 Patrik Odqvist - 44913711
+
 Sebastian Zuloaga - 44577083
+
 Sanjana Bhatnagar - 44376352
+
 Jinyu Wang - 44606219
 
 To Run the program on your desktop, You need to place all the files in a folder of your choice.
