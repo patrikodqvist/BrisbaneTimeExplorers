@@ -4,6 +4,7 @@ Group project - Brisbane time explorers
 Eduacational game that utilizes SLQ-Database
 
 Members:
+
 Patrik Odqvist - 44913711
 Sebastian Zuloaga - 44577083
 Sanjana Bhatnagar - 44376352
