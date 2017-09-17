@@ -22,7 +22,7 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 			user.password
 		).then(function(user){
 			console.log("login success");
-			$window.location.href="#!/home"
+			//$window.location.href="#!/home"
 		}).catch(function(error) {
 			$rootScope.errorMessage = error.message;
 		});

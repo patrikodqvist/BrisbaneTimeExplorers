@@ -9,36 +9,6 @@ brissyGame.controller('searchCtrl', ['$scope', '$routeParams', '$rootScope', 'Li
 		});
 	}
 
-	$scope.sort = function(number) {
-		var list = [];
-		for (obj in $scope.recordList) {
-			var test = $scope.recordList[obj]["dcterms:temporal"];
-			$scope.getYear(test);
-
-			if (test == number) {
-				list.push(obj);
-			}
-		}
-		
-	}
-
-	$scope.getYear = function(string) {
-		var end = false
-		var counter = 0;
-		var length = string.length();
-		console.log(length);
-		while (end == false) {
-			if (counter == length) {
-				end = true;
-			}
-			char = string[0];
-			console.log(char);
-			counter +=1;
-		}
-
-
-	}
-
 	$scope.maps = function() {
 		$scope.realMaps = true;
 		var key = '46fc1185-d837-46e7-9142-7224efa9ccdd';

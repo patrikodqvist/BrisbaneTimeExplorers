@@ -1,18 +1,72 @@
-brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope) {
-	
-	this.search = $resource('http://data.gov.au/api/action/datastore_search?resource_id=:id&limit=5'
-,{},{
+brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window) {
+	//Loading Variable
+	this.loaded = false;
+
+	//Finds the year of the data string
+	this.getYear = function(string) {
+		var end = false;
+		var counter = 0;
+		var length = string.length;
+		var year = "";
+		while (end == false) {
+			if (year.length == 5) {
+				end=true;
+			}
+			else if (counter == length) {
+				end=true;	
+			}
+			else if (Number.isInteger(Number(string[counter]))) {
+				year += string[counter];
+				counter +=1;
+			}
+			else {
+				counter+=1;
+				year="";
+			}
+		}
+		return Number(year);
+	}
+
+	//Adds the year and cordinates as attributes to the objects
+	this.sort = function(array) {
+		for (obj in array) {
+			var yearS = array[obj]["dcterms:temporal"];
+			if (yearS) {
+				var year = this.getYear(yearS);
+			}
+			var location = array[obj]["dcterms:spatial"].split(';');
+			if (location[1]) {
+				var longlat = location[1].split(',');
+				if (longlat.length == 2) {
+					array[obj]["lat"] = Number(longlat[0]);
+					array[obj]["long"] = Number(longlat[1]);
+					if (year) {
+						array[obj]["year"] = year;
+					}
+				}
+			}
+			else {
+				console.log(location);
+			}	
+		}
+		$rootScope.recordsLists = array;
+		$window.location.href = "#!/home";	
+	}
+
+	//Real Estate Maps
+	this.realEstate = $resource('http://data.gov.au/api/action/datastore_search?resource_id=:id&limit=200',{},{
 		get: {}
 	});
-
-	this.maps = $resource('http://data.gov.au/datastore/odata3.0/:id?$top=5&$format=json', {}, {
-		get: {}
-	});
-
-	this.pictures = $resource('http://data.gov.au/datastore/odata3.0/9913b881-d76d-43f5-acd6-3541a130853d?$top=5&$format=json',{},{
+	//Queensland pictures
+	this.queenslandPictures = $resource('http://data.gov.au/datastore/odata3.0/9913b881-d76d-43f5-acd6-3541a130853d?$top=5&$format=json',{},{
 		get:{}
 	});
 
+
+	//Old searches---------------------------------------------------->
+	this.maps = $resource('http://data.gov.au/datastore/odata3.0/:id?$top=5&$format=json', {}, {
+		get: {}
+	});
 	this.wwOneRecords = $resource('http://data.gov.au/datastore/odata3.0/deea2f8b-7ecc-427b-9529-973bc42dfbed?$top=5&$format=json',{},{
 		get:{}
 	});
@@ -32,16 +86,6 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope) {
 	this.newsPapers = $resource('http://data.gov.au/datastore/odata3.0/deea2f8b-7ecc-427b-9529-973bc42dfbed?$top=5&$format=json',{},{
 		get:{}
 	});
-
-	this.sort = function(array) {
-		for (obj in array) {
-			//["dcterms:spatial"]
-			var location = array[obj]["dcterms:spatial"].split(';');
-			var longlat = location[1].split(',');
-			array[obj]["lat"] = Number(longlat[0]);
-			array[obj]["long"] = Number(longlat[1]);
-		}
-		$rootScope.recordsLists = array;	
-	}
+	//will go over above-------------------------------------------------->	
 	return this;
 });
