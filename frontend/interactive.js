@@ -89,4 +89,15 @@ $(document).ready(function() {
     $('#diamond').mouseleave(function(){
         $(this).attr("src","images/diamond_closed.png");
     });
+
+    $('.missingclue').mouseenter(function(){
+        $(this).css("opacity","0.7");
+        $(this).animate({width: '170',height:'170'},'1000');
+    });
+
+    $('.missingclue').mouseleave(function(){
+        $(this).css("opacity","1");
+        $(this).animate({width: '150',height:'150'},'1000');
+    });
+
 });
