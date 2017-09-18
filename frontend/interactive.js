@@ -73,4 +73,12 @@ $(document).ready(function() {
     $('#chestbutton').mouseleave(function(){
         $('img#chest').attr("src","images/chest_closed.png");
     });
+
+    $('#pipe').mouseenter(function(){
+        $(this).attr("src","images/pipe_on.png");
+    });
+
+    $('#pipe').mouseleave(function(){
+        $(this).attr("src","images/pipe_off.png");
+    });
 });
