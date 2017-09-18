@@ -57,4 +57,20 @@ $(document).ready(function() {
     $('img#level4').mouseleave(function(){
         $(this).attr("src","images/Level4.png");
     });
+
+    $('img#chest').mouseenter(function(){
+        $(this).attr("src","images/chest_open.png");
+    });
+
+    $('img#chest').mouseleave(function(){
+        $(this).attr("src","images/chest_closed.png");
+    });
+
+    $('#chestbutton').mouseenter(function(){
+        $('img#chest').attr("src","images/chest_open.png");
+    });
+
+    $('#chestbutton').mouseleave(function(){
+        $('img#chest').attr("src","images/chest_closed.png");
+    });
 });
