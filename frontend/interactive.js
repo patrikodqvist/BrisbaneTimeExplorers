@@ -81,4 +81,12 @@ $(document).ready(function() {
     $('#pipe').mouseleave(function(){
         $(this).attr("src","images/pipe_off.png");
     });
+
+    $('#diamond').mouseenter(function(){
+        $(this).attr("src","images/diamond_open.png");
+    });
+
+    $('#diamond').mouseleave(function(){
+        $(this).attr("src","images/diamond_closed.png");
+    });
 });
