@@ -15,12 +15,29 @@
 
     <body>
 
+        <!-- This page is the pop up that should only appear if the landmark holds a clue!-->
+
         <div class="container-fluid">
 
             <div class="row">
                 <div class="col-md-12" style="position:fixed;height: 100%; background-image: url(images/scrollpop.png); 
-                background-repeat:no-repeat; background-size: cover;">
+                background-repeat:no-repeat; background-size: contain; background-position: center;">
+                    <h2 style="padding: 50px 15px 15px 15px; font-size: 3em;">Congratulations Patrik!</h2>
                     <img id="pipe" src="images/pipe_off.png"/>
+                    <h2>You just found a Clue for the mystery of level 1!</h2>
+
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-4">
+                        <!--This link should take to the progress page-->
+                        <a href="progress.html"><button>Check Progress</button></a>
+                    </div>
+                    <div class="col-md-4">
+                        <!--This button here should close the pup up and return the player to the Google Map page-->
+                        <button>Back to Map</button>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
                 </div>
 
             </div>
