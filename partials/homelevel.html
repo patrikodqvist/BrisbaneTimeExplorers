@@ -1,66 +1,46 @@
 <div class="container-fluid">
     <div class="row" >
-        <div class="col-md-3" style="background-color: #383838; height:100%;" id="slideIn">
-            <img id="logosidebar" src="images/logo_white.png"/>
-            <h3 class="sidebartext">SebZuloaga</h3>
-            <div class="navbar" style="width:100%;">
-                <a href="levelmenu.html"><button class="sidebarbutton">LEVEL MENU</button></a>
-                <a href="progress.html"><button class="sidebarbutton">PROGRESS</button></a>
-                <div class="row" style="padding:20px 0px;">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-8" style="background-color: white; border-radius: 50px; padding:5px 5px;">
-                        <h4 class="textbubble">Hey Patrik!</h4>
-                        <p class="textbubble">Click on the landmarks to learn more about them and find treasures.</p>
-                    </div>
-                    <div class="col-md-2">
-                    </div>
-                </div>
-                <div class="row">
-                    <img src="images/man2.svg" style="max-height:250px;max-width:250px;"></img>
-                </div>
-            </div>
+        <div class="col-md-3" style="background-color: #383838; height:100%;" id="slideIn" ng-controller="slideInCtrl">
+            <ng-include src="'partials/slidein.html'"></ng-include>
         </div>
-        
-        <div class="col-md-9" style="background-color: #FFFFFF; height: 860px;">
-            <!-- The Google Map API should be fitted into this section -->
-            <div class="row">
-                    <div class="col-md-12" id="map" style="height:100%; ">
-                    </div>
-            </div>
+        <div class="col-md-9" id="map" style="height: 100%;">
         </div>
 
         <div class="col-md-3" style="background-color: #ccb269; height: 860px; display: none;" id="landmark">
-            <div class="row">
-                <h2>Selected Landmark</h2>
-            </div>
-            <div class="row">
-                <!-- The image URL here should change based on the landmark that is clicked-->
-                <img ng-src="{{picture}}" style="max-height:400px ;max-width:300px;"/>
-            </div>
-            <div class="row">
-                <!-- The titleL here should change based on the landmark that is clicked-->
-                <h3>{{title}}</h3>
-                
-            </div>
-            <div class="row">
-                <!-- The description here should change based on the landmark that is clicked-->
-                <p>{{description}}</p>
-            </div>
-            <div class="row">
-                <ul>
-                    <!-- The bullet points here should change based on the landmark that is clicked. These are only suggestions, we could add others or delete some.-->
-                    <li><strong>Year: {{year}} </strong></li>
-                    <li><strong>Place: </strong></li>
-                </ul>
-            </div>
-            <div class="row" style="padding: 50px 15px;">
-                <img id="chest" src="images/chest_closed.png"/> 
-            </div>
+            <div class="row" ng-repeat="obj in recordsLists" id="landmark{{obj['_id']}}" style="display: none; ">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2>Selected Landmark</h2>
+                    </div>
+                    <div class="row">
+                        <!-- The image URL here should change based on the landmark that is clicked-->
+                        <img ng-src="{{obj['150_pixel_jpg']}}" style="max-height:400px ;max-width:300px;"/>
+                    </div>
+                    <div class="row">
+                        <!-- The titleL here should change based on the landmark that is clicked-->
+                        <h3>{{obj["dc:title"]}}</h3>
+                        
+                    </div>
+                    <div class="row" >
+                        <!-- The description here should change based on the landmark that is clicked-->
+                        <p style="background-color: #ccb269; overflow: hidden;">{{obj["dc:description"]}}</p>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <!-- The bullet points here should change based on the landmark that is clicked. These are only suggestions, we could add others or delete some.-->
+                            <li><strong>Year: {{obj.year}} </strong></li>
+                            <li><strong>Place: </strong></li>
+                        </ul>
+                    </div>
+                    <div class="row" style="padding: 50px 15px;">
+                        <img id="chest" src="images/chest_closed.png"/> 
+                    </div>
 
-            <div class="row">
-                <a ng-click="cluepage()"><button id="chestbutton">Open Treasure!</button></a>
-            </div>
+                    <div class="row">
+                        <a ng-click="cluepage()"><button id="chestbutton">Open Treasure!</button></a>
+                    </div>
+                </div>
+            </div>    
         </div>
     </div>
 </div>

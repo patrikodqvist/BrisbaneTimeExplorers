@@ -1,12 +1,12 @@
 brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window) {
 	//Loading Variable
 	this.loaded = false;
-
+	//To save elements from the randomfunction
+	this.tempArray = [];
 	//Randints 
 	this.getRandomArbitrary = function(min, max) {
   			return parseInt(Math.random() * (max - min) + min);
 		}
-
 	//Finds the year of the data string
 	this.getYear = function(string) {
 		var end = false;
@@ -35,7 +35,6 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Adds the year and cordinates as attributes to the objects
 	//-27.46794, 153.02809 brisbane coordinates
 	this.sort = function(array) {
-		//console.log("hej");
 		var records = [];
 		for (obj in array) {
 			var yearS = array[obj]["dcterms:temporal"];
@@ -50,69 +49,67 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 					array[obj]["long"] = Number(longlat[1]);
 					var lat = Math.round(array[obj].lat*10)/10;
 					var lng = Math.round(array[obj].long*10)/10;
-					//console.log([lat,lng]);
 
 					if (year) {
 						if (lng == 153.0 && lat == -27.5) {
 							array[obj]["year"] = year;
 							records.push(array[obj])
 						}
-						
 					}
 				}
 			}
-			else {
-				//console.log(location);
-			}	
 		}
-
+		//Uses it in the random function
 		var len = records.length;
-		test = [];
-
-		for (i = 0; i < 4; i++) {
-
+		//For the while loop, Want it to be true when we have five unique objects
+		var stop = false
+		while (stop==false) {
 			var obj = this.getRandomArbitrary(1,len);
-			test.push(records[obj]);
-
+			var object = records[obj];
+			if (this.tempArray.length == 5) {
+				stop=true;
+			}
+			else if (this.testId(object)) {
+			}
+			else {
+				this.tempArray.push(records[obj]);
+			}
 		}
-		//console.log(records);
-		$rootScope.recordsLists = test;
+		$rootScope.recordsLists = this.tempArray;
 		$window.location.href = "#!/charcter";	
 	}
 
+	//Tests that there are no duplicates and that none of them share the same cordiantes
+	this.testId = function(obj) {
+		var test = false;
+		for (i in this.tempArray) {
+			if (this.tempArray[i]["_id"]==obj["_id"]) {
+				if (this.tempArray[i].lat == obj.lat && this.tempArray[i].long == obj.long) {
+					test=true;
+				}
+				else {
+					test=true;
+				}
+				
+			}
+			else if (this.tempArray[i].lat == obj.lat && this.tempArray[i].long == obj.long) {
+				test=true;
+			}
+			else {
+
+			}
+		}
+		return test;
+	}
+
 	//Real Estate Maps
-	this.realEstate = $resource('http://data.gov.au/api/action/datastore_search?resource_id=:id&limit=200',{},{
+	this.realEstate = $resource('https://data.gov.au/api/action/datastore_search?resource_id=:id&limit=200',{},{
 		get: {}
 	});
 	//Queensland pictures
-	this.queenslandPictures = $resource('http://data.gov.au/datastore/odata3.0/9913b881-d76d-43f5-acd6-3541a130853d?$top=5&$format=json',{},{
+	this.queenslandPictures = $resource('https://data.gov.au/datastore/odata3.0/9913b881-d76d-43f5-acd6-3541a130853d?$top=5&$format=json',{},{
 		get:{}
 	});
 
-
-	//Old searches---------------------------------------------------->
-	this.maps = $resource('http://data.gov.au/datastore/odata3.0/:id?$top=5&$format=json', {}, {
-		get: {}
-	});
-	this.wwOneRecords = $resource('http://data.gov.au/datastore/odata3.0/deea2f8b-7ecc-427b-9529-973bc42dfbed?$top=5&$format=json',{},{
-		get:{}
-	});
-
-	this.wwOnePictures = $resource('http://data.gov.au/datastore/odata3.0/cf6e12d8-bd8d-4232-9843-7fa3195cee1c?$top=5&$format=json',{},{
-		get:{}
-	});
-
-	this.convicts = $resource('http://data.gov.au/datastore/odata3.0/6ab35f9a-e476-4d29-84de-2e18d1e704c7?$top=5&$format=json',{},{
-		get:{}
-	});
-
-	this.miningAccidents = $resource('http://data.gov.au/datastore/odata3.0/63fd8050-0bab-4c04-b837-b2ce664077bf?$top=5&$format=json',{},{
-		get:{}
-	});
-
-	this.newsPapers = $resource('http://data.gov.au/datastore/odata3.0/deea2f8b-7ecc-427b-9529-973bc42dfbed?$top=5&$format=json',{},{
-		get:{}
-	});
-	//will go over above-------------------------------------------------->	
 	return this;
 });

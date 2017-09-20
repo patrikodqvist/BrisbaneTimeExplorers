@@ -16,50 +16,49 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
   	});
 	//LogsIn a user, and authenticates with firebase
 	var service = {
-	login: function(user) {
-		auth.$signInWithEmailAndPassword(
-			user.email,
-			user.password
-		).then(function(user){
-			console.log("login success");
-			//$window.location.href="#!/home"
-		}).catch(function(error) {
-			$rootScope.errorMessage = error.message;
-		});
-	},
-	//Creates a New User, and signs the new user.
-	createNewUser: function(user) {
-		auth.$createUserWithEmailAndPassword(
-			user.email,
-			user.password,
-			user.username
-			).then(function(newUser) {
-				ref.child(newUser.uid).set({
-					email: user.email,
-					password: user.password,
-					username: user.username,
-					id: newUser.uid,
-					stories: '',
-					position: '',
-					host: '',
-				});
-				service.login(user);
+		login: function(user) {
+			auth.$signInWithEmailAndPassword(
+				user.email,
+				user.password
+			).then(function(user){
+				console.log("login success");
+				//$window.location.href="#!/home"
 			}).catch(function(error) {
-				console.log(error);
-				$rootScope.errorMessage= error.message;
+				$rootScope.errorMessage = error.message;
 			});
-	},
-    // Require Authentication
-	requireAuth: function() {
-      return auth.$requireSignIn();
-    }, 
-    // Logout
-    logout: function() {
-    	console.log("hej");
-      	auth.$signOut();
-      	$window.location.href="#!/login";
-
-    }, 
-}
+		},
+		//Creates a New User, and signs the new user.
+		createNewUser: function(user) {
+			auth.$createUserWithEmailAndPassword(
+				user.email,
+				user.password,
+				user.username
+				).then(function(newUser) {
+					ref.child(newUser.uid).set({
+						email: user.email,
+						password: user.password,
+						username: user.username,
+						id: newUser.uid,
+						stories: '',
+						position: '',
+						host: '',
+					});
+					service.login(user);
+				}).catch(function(error) {
+					console.log(error);
+					$rootScope.errorMessage= error.message;
+				});
+		},
+	    // Require Authentication
+		requireAuth: function() {
+	      return auth.$requireSignIn();
+	    }, 
+	    // Logout
+	    logout: function() {
+	      	auth.$signOut();
+	      	$window.location.href="#!/login";
+	    }
+	}
+	
 	return service;
 });

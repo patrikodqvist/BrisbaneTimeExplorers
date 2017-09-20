@@ -1,27 +1,8 @@
 <div class="container-fluid">
     <div class="row" >
-        <div class="col-md-3" style="background-color: #383838; position:fixed; height:100%;">
-            <img id="logosidebar" src="images/logo_white.png"/>
-            <h3 class="sidebartext">SebZuloaga</h3>
-            <div class="navbar" style="width:100%;">
-                <a ng-href="#!/levelmenu"><button class="sidebarbutton">LEVEL MENU</button></a>
-                <a href=""><button class="sidebarbutton">PROGRESS</button></a>
-                <div class="row" style="padding:20px 0px;">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-8" style="background-color: white; border-radius: 50px; padding:5px 5px;">
-                        <h4 class="textbubble">Hey Patrik!</h4>
-                        <p class="textbubble">Here you can select the level you want to play by clicking on it!</p>
-                    </div>
-                    <div class="col-md-2">
-                    </div>
-                </div>
-                <div class="row">
-                    <img src="images/man2.svg" style="max-height:250px;max-width:250px;"></img>
-                </div>
-            </div>
+        <div class="col-md-3" style="background-color: #383838; position:fixed; height:100%;" id="slideIn" ng-controller="slideInCtrl">
+            <ng-include src="'partials/slidein.html'"></ng-include>
         </div>
-
         <div class="col-md-9" style="background-image:url(images/map_compass.png); background-size: cover; height: 100%; float:right; padding: 70px 15px;">
 
             <div class="row">
