@@ -6,7 +6,7 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Randints 
 	this.getRandomArbitrary = function(min, max) {
   			return parseInt(Math.random() * (max - min) + min);
-		}
+	}
 	//Finds the year of the data string
 	this.getYear = function(string) {
 		var end = false;
@@ -31,7 +31,6 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 		}
 		return Number(year);
 	}
-
 	//Adds the year and cordinates as attributes to the objects
 	//-27.46794, 153.02809 brisbane coordinates
 	this.sort = function(array) {
@@ -78,7 +77,6 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 		$rootScope.recordsLists = this.tempArray;
 		$window.location.href = "#!/character";	
 	}
-
 	//Tests that there are no duplicates and that none of them share the same cordiantes
 	this.testId = function(obj) {
 		var test = false;
@@ -89,8 +87,7 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 				}
 				else {
 					test=true;
-				}
-				
+				}	
 			}
 			else if (this.tempArray[i].lat == obj.lat && this.tempArray[i].long == obj.long) {
 				test=true;
@@ -100,12 +97,11 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 		}
 		return test;
 	}
-
 	//Real Estate Maps
 	this.realEstate = $resource('https://data.gov.au/api/action/datastore_search?resource_id=:id&limit=200',{},{
 		get: {}
 	});
-	//Queensland pictures
+	//Queensland pictures Not implemented yet
 	this.queenslandPictures = $resource('https://data.gov.au/datastore/odata3.0/9913b881-d76d-43f5-acd6-3541a130853d?$top=5&$format=json',{},{
 		get:{}
 	});

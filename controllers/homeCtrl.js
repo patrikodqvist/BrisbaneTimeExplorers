@@ -3,7 +3,7 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 	$scope.landmark=false;
 	//to keep track of the landmark that is open
 	$scope.id = 0;
-	//Javascripts runs twice and the second time is not necessary to rebuild the map
+	//Javascripts runs scropts twice and the second time is not necessary to rebuild the map
 	if (Library.loaded) {
 
     }
