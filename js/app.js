@@ -7,9 +7,15 @@ function($routeProvider) {
       controller: 'loginCtrl',
       templateUrl: 'partials/login.html',
       }).
+ when('/charcter', {
+ 	  templateUrl: 'partials/character.html'
+ }).
+ when('/levelmenu', {
+ 	templateUrl: 'partials/levelmenu.html'
+ }).
   when('/home', {
   		controller: 'homeCtrl',
-      	templateUrl: 'partials/home.html',  
+      	templateUrl: 'partials/homelevel.html',  
     	}).
   otherwise('/login', {
       controller: 'loginCtrl',

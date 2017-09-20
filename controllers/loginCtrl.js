@@ -1,6 +1,14 @@
 brissyGame.controller('loginCtrl', ['$scope', '$routeParams', '$rootScope', 'Library', 'Authentication', function($scope,$routeParams,$rootScope, Library, Authentication) {
 	//Loading shall be false initially
+	$rootScope.landmark=false;
+
 	$scope.loading = false;
+	//state chall be false
+	$scope.state = false;
+
+	$scope.changeState = function() {
+		$scope.state = true;
+	}
 	$scope.login = function(username,password) {
 		//creating a User Objebct for the Authentication
 		var user = {email:username,

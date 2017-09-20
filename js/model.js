@@ -2,6 +2,11 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Loading Variable
 	this.loaded = false;
 
+	//Randints 
+	this.getRandomArbitrary = function(min, max) {
+  			return parseInt(Math.random() * (max - min) + min);
+		}
+
 	//Finds the year of the data string
 	this.getYear = function(string) {
 		var end = false;
@@ -28,7 +33,10 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	}
 
 	//Adds the year and cordinates as attributes to the objects
+	//-27.46794, 153.02809 brisbane coordinates
 	this.sort = function(array) {
+		//console.log("hej");
+		var records = [];
 		for (obj in array) {
 			var yearS = array[obj]["dcterms:temporal"];
 			if (yearS) {
@@ -40,17 +48,36 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 				if (longlat.length == 2) {
 					array[obj]["lat"] = Number(longlat[0]);
 					array[obj]["long"] = Number(longlat[1]);
+					var lat = Math.round(array[obj].lat*10)/10;
+					var lng = Math.round(array[obj].long*10)/10;
+					//console.log([lat,lng]);
+
 					if (year) {
-						array[obj]["year"] = year;
+						if (lng == 153.0 && lat == -27.5) {
+							array[obj]["year"] = year;
+							records.push(array[obj])
+						}
+						
 					}
 				}
 			}
 			else {
-				console.log(location);
+				//console.log(location);
 			}	
 		}
-		$rootScope.recordsLists = array;
-		$window.location.href = "#!/home";	
+
+		var len = records.length;
+		test = [];
+
+		for (i = 0; i < 4; i++) {
+
+			var obj = this.getRandomArbitrary(1,len);
+			test.push(records[obj]);
+
+		}
+		//console.log(records);
+		$rootScope.recordsLists = test;
+		$window.location.href = "#!/charcter";	
 	}
 
 	//Real Estate Maps
