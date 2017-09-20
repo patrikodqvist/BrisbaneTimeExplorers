@@ -59,6 +59,5 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 	      	$window.location.href="#!/login";
 	    }
 	}
-	
 	return service;
 });

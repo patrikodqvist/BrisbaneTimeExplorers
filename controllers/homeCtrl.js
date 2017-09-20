@@ -57,7 +57,8 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
     $scope.closeLandmark = function() {
     	var slideIn = document.getElementById('slideIn');
 		slideIn.style.display='';
-		var infoPage = document.getElementById('landmark'+$scope.id);
+		var id = 'landmark'+$scope.id;
+		var infoPage = document.getElementById(id);
 		infoPage.style.display='none';
 		var land = document.getElementById('landmark');
 		land.style.display='none';

@@ -76,7 +76,7 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 			}
 		}
 		$rootScope.recordsLists = this.tempArray;
-		$window.location.href = "#!/charcter";	
+		$window.location.href = "#!/character";	
 	}
 
 	//Tests that there are no duplicates and that none of them share the same cordiantes
@@ -96,7 +96,6 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 				test=true;
 			}
 			else {
-
 			}
 		}
 		return test;

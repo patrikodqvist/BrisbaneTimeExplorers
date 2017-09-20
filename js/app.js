@@ -7,7 +7,7 @@ function($routeProvider) {
       controller: 'loginCtrl',
       templateUrl: 'partials/login.html',
       }).
- when('/charcter', {
+ when('/character', {
  	  templateUrl: 'partials/character.html'
  }).
  when('/levelmenu', {
