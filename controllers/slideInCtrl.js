@@ -3,6 +3,7 @@ brissyGame.controller('slideInCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 	//Logs out the user
 	$scope.signout = function() {
 		Library.loaded = false;
+		Library.tempArray = [];
     	Authentication.logout();
     }
     //For the future to jump back to the overworld
