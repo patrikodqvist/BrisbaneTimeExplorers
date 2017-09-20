@@ -22,7 +22,7 @@ To Run the program on your desktop, You need to place all the files in a folder 
 
 External website deployed using firebase deploy:
 
-.............
+https://brissygame.firebaseapp.com/#!/login
 
 Workflow Trello
 
