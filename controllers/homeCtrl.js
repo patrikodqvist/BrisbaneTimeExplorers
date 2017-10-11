@@ -3,9 +3,72 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 	$scope.landmark=false;
 	//to keep track of the landmark that is open
 	$scope.id = 0;
+	//Animations
+	$scope.animations = function() {
+		$(document).ready(function() {
+
+		    $('img.avatarsm').mouseenter(function(){
+		        $(this).animate({width: '110px' ,height:'520px'},'1000');
+		    });
+
+		    $('img.avatarsm').mouseleave(function(){
+		        $(this).animate({width: '100px' ,height:'500px'},'1000');
+		    });
+
+		     $('img.avatarsf').mouseenter(function(){
+		        $(this).animate({width: '130px' ,height:'540px'},'1000');
+		    });
+
+		    $('img.avatarsf').mouseleave(function(){
+		        $(this).animate({width: '120px' ,height:'540px'},'1000');
+		    });
+
+		    $('img.avatarsm').click(function(){
+		        $('img').removeClass("light");
+		        $(this).addClass("light");
+		    });
+
+		    $('img.avatarsf').click(function(){
+		        $('img').removeClass("light");
+		        $(this).addClass("light");
+		    });
+
+		    $('img#level1').mouseenter(function(){
+		        $(this).attr("src","images/Level-1.png");
+		    });
+
+		    $('img#level1').mouseleave(function(){
+		        $(this).attr("src","images/Level1.png");
+		    });
+
+		    $('img#level2').mouseenter(function(){
+		        $(this).attr("src","images/Level-2.png");
+		    });
+
+		    $('img#level2').mouseleave(function(){
+		        $(this).attr("src","images/Level2.png");
+		    });
+
+		     $('img#level3').mouseenter(function(){
+		        $(this).attr("src","images/Level-3.png");
+		    });
+
+		    $('img#level3').mouseleave(function(){
+		        $(this).attr("src","images/Level3.png");
+		    });
+
+		     $('img#level4').mouseenter(function(){
+		        $(this).attr("src","images/Level-4.png");
+		    });
+
+		    $('img#level4').mouseleave(function(){
+		        $(this).attr("src","images/Level4.png");
+		    });
+		});
+	}
+	$scope.animations();
 	//Javascripts runs scropts twice and the second time is not necessary to rebuild the map
 	if (Library.loaded) {
-
     }
     else {
     	//Map constructor
@@ -44,7 +107,6 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 		 		});
 	    	}
 	    }
-
 	//When the user finds a clue
     $scope.cluepage = function() {
     	var test = confirm("You found a clue");
@@ -52,7 +114,6 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
     		$scope.closeLandmark();
     	}
     }
-
     //Closing of the landmark info
     $scope.closeLandmark = function() {
     	var slideIn = document.getElementById('slideIn');
@@ -62,7 +123,6 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 		infoPage.style.display='none';
 		var land = document.getElementById('landmark');
 		land.style.display='none';
-
     }
     //Makes sure that the map is constructed
     $scope.initMap();

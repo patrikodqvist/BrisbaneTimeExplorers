@@ -7,10 +7,16 @@ function($routeProvider) {
       controller: 'loginCtrl',
       templateUrl: 'partials/login.html',
       }).
+ when('/loading', {
+      controller: 'loadingCtrl',
+      templateUrl: 'partials/loading.html',
+      }).
  when('/character', {
- 	  templateUrl: 'partials/character.html'
+ 		controller: 'slideInCtrl',
+ 	 	templateUrl: 'partials/character.html'
  }).
  when('/levelmenu', {
+ 	controller: 'slideInCtrl',
  	templateUrl: 'partials/levelmenu.html'
  }).
   when('/home', {

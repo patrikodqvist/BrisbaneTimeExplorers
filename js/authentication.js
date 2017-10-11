@@ -22,7 +22,11 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 				user.password
 			).then(function(user){
 				console.log("login success");
-				//$window.location.href="#!/home"
+				$rootScope.loggedIn = true;
+				if ($rootScope.loads == 3) {
+					$window.location.href = "#!/loading"; 
+				}
+				
 			}).catch(function(error) {
 				$rootScope.errorMessage = error.message;
 			});
@@ -39,9 +43,17 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 						password: user.password,
 						username: user.username,
 						id: newUser.uid,
-						stories: '',
-						position: '',
-						host: '',
+						unlocks: '',
+						clues: '',
+						shoes: '',
+						pants: '',
+						jumper: '',
+						currancy: '',
+						levelOne: '',
+						levelTwo: '',
+						levelThree: '',
+						levelFour: '',
+						savedGame: false,
 					});
 					service.login(user);
 				}).catch(function(error) {
@@ -49,6 +61,23 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 					$rootScope.errorMessage= error.message;
 				});
 		},
+		//SavesGameMarkes
+		saveMarkers: function(type, markers) {
+			if (type=="levelOne") {
+				ref.child($rootScope.currentUser.id).child("levelOne").set(markers);
+				ref.child($rootScope.currentUser.id).child("savedGame").set(true);
+			}
+			else if (type=="levelTwo") {
+				ref.child($rootScope.currentUser.id).child("levelTwo").set(markers);
+			}
+			else if (type=="levelThree") {
+				ref.child($rootScope.currentUser.id).child("levelThree").set(markers);
+			}
+			else {
+				ref.child($rootScope.currentUser.id).child("levelFour").set(markers);
+			}
+		},
+
 	    // Require Authentication
 		requireAuth: function() {
 	      return auth.$requireSignIn();
