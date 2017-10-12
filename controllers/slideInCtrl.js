@@ -3,7 +3,9 @@ brissyGame.controller('slideInCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 	//Logs out the user
 	$scope.signout = function() {
 		Library.loaded = false;
+		Library.loading = false;	
 		Library.tempArray = [];
+		$rootScope.loggedIn = false;
     	Authentication.logout();
     }
     //For the future to jump back to the overworld
@@ -25,18 +27,27 @@ brissyGame.controller('slideInCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 	$scope.levelLoad = function(number) {
 		if (number==1) {
 			$rootScope.recordsLists = $rootScope.levelOne;
+			Library.level = "One";
+			//$rootScope.markers = $rootScope.currentUser.levelOne;
 			$window.location.href = "#!/home";
 		}
 		else if (number==2) {
 			$rootScope.recordsLists = $rootScope.levelTwo;
+			//$rootScope.markers = $rootScope.currentUser.levelTwo;
+			Library.level = "Two";
 			$window.location.href = "#!/home";
+
 		}
 		else if (number==3) {
 			$rootScope.recordsLists = $rootScope.levelThree;
+			//$rootScope.markers = $rootScope.currentUser.levelThree;
+			Library.level = "Three";
 			$window.location.href = "#!/home";
 		}
 		else {
 			$rootScope.recordsLists = $rootScope.levelFour;
+			//$rootScope.markers = $rootScope.currentUser.levelFour;
+			Library.level = "Four";
 			$window.location.href = "#!/home";
 		}
 	}

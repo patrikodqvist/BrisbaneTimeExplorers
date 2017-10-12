@@ -1,13 +1,14 @@
 
 <img id="logosidebar" src="images/logo_white.png"/>
-<h3 class="sidebartext">PatOdqvist</h3>
-<div class="navbar" style="width:100%;">
+<h3 class="sidebartext">{{currentUser.username}}</h3>
+<div class="navbar" style="width:100%; color:white;" >
     <a ng-if=checkGame() ng-click="backButton()"><button class="sidebarbutton">LEVEL MENU</button></a>
+    Currancy: ${{currentUser.currancy}}.0
     <a href=""><button class="sidebarbutton">PROGRESS</button></a>
     <div class="row" style="padding:20px 0px;">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8" style="background-color: white; border-radius: 50px; padding:5px 5px;">
+        <div class="col-md-8" style="background-color: white; border-radius: 50px; padding:5px 5px ; color:black;">
             <h4 class="textbubble">Hey Patrik!</h4>
             <p class="textbubble">Here you can select the level you want to play by clicking on it!</p>
         </div>

@@ -22,19 +22,15 @@ brissyGame.controller('loginCtrl', ['$scope', '$routeParams', '$rootScope', 'Lib
 				if ($rootScope.loggedIn) {
 					$window.location.href = "#!/loading"; 
 				}
-					
-				
 			}
 	}
 	//Logs in the user
 	$scope.login = function(email,password) {
-		
 		//creating a User Objebct for the Authentication
 		var user = {email:email,
 					password:password};
 		Authentication.login(user);
-		
-		$scope.checkData();
+		$scope.getData();
 	}
 	//Sign up
 	$scope.signUp = function(username,email,password) {
@@ -43,36 +39,30 @@ brissyGame.controller('loginCtrl', ['$scope', '$routeParams', '$rootScope', 'Lib
 			email:email,
 			password:password};
 		Authentication.createNewUser(user);
-		$scope.checkData();
-		
+		$scope.getData();	
 	}
-	$scope.checkData = function() {
+	//Retrieves the data
+	$scope.getData = function() {
 		//Retriveing real Estate data
 		var id = "f5ecd45e-7730-4517-ad29-73813c7feda8";
 		Library.realEstate.get({id:id}, function(output) {
 			var array = Library.sort(output.result.records);
-			//array = Library.randomMarkers(array);
 			$rootScope.realEstate = array;
-			console.log(array);
 			$rootScope.loads +=1;
 			$scope.checkLoad(1);
 		});
 		var idTwo = "9913b881-d76d-43f5-acd6-3541a130853d";
 		Library.queenslandPictures.get({id:idTwo}, function(output){
 			var array = Library.sort(output.result.records);
-			//array = Library.randomMarkers(array);
 			$rootScope.queenslandPictures = array;
 			$rootScope.loads +=1;
-			console.log(array);
 			$scope.checkLoad(2);
 		});
 		var idThree = "26b0b235-13f0-4132-ae47-5ccf3d1c8e89";
 		Library.photographs.get({id:idThree}, function(output){
 			var array = Library.sort(output.result.records);
-			//array = Library.randomMarkers(array);
 			$rootScope.photographs = array;
 			$rootScope.loads +=1;
-			console.log(array);
 			$scope.checkLoad(3);
 		});
 	}

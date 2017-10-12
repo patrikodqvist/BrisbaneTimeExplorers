@@ -2,6 +2,8 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Loading Variable
 	this.loading = false;
 	this.loaded = false;
+	//Selected level
+	this.level = "";
 	//To save elements from the randomfunction
 	this.tempArray = [];	
 	//Randints 
@@ -92,10 +94,12 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	}
 	//Picks out random markers
 	this.randomMarkers = function(records) {
+		//ids is an object that will have the information of the id and if the landmark is completed
 		var ids = {};
 		//Uses it in the random function
 		var len = records.length;
 		var end = 5;
+		//end is extended since we need four levels from three datasets
 		if (len > 60) {
 			end=10;
 		}
@@ -103,7 +107,6 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 		var index = 0;
 		var stop = false
 		while (stop==false) {
-
 			var obj = this.getRandomArbitrary(1,len);
 			var object = records[obj];
 			if (this.tempArray.length == end) {
@@ -112,13 +115,14 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 			else if (this.testId(object)) {
 			}
 			else {
-				ids["" + index]= {id:records[obj]["_id"],
-							completed: false}
+				ids["" + index] = {
+					id:records[obj]["_id"],
+					completed: false
+				}
 				this.tempArray.push(records[obj]);
 				index+=1;
 			}
 		}
-		console.log(ids);
 		var returnArray = this.tempArray;
 		this.tempArray = [];
 		return [returnArray, ids];	
@@ -126,19 +130,36 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Retrieve old markers
 	this.loadOldMarkers = function(markers,array) {
 		var list = [];
+		//Angular foreach is to itterate over attributes within a object
 		angular.forEach(markers, function(value, key) {
 			for (var marker=0; marker < array.length; marker++) {
 				if (value.id == array[marker]["_id"]) {
-					console.log("hej");
 					list.push(array[marker]);
 				}
 			}
 		});
-			
-
-		console.log(list);
 		return list;
-		
+	}
+	//Changes the state of the markers
+	this.markerChangeState = function(id, markers) {
+		angular.forEach(markers, function(value, key) {
+			if (value.id == id) {
+				value.completed=true;
+			}
+		});
+		return markers;
+	}
+	//Id validator for markers
+	this.idValidator = function(id, markers) {
+		var test = false;
+		angular.forEach(markers, function(value, key) {
+			if (value.id == id) {
+				if (value.completed==true) {
+					test=true
+				}
+			}
+		});
+		return test;
 	}
 	//Tests that there are no duplicates and that none of them share the same cordiantes
 	this.testId = function(obj) {
@@ -165,11 +186,11 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 		get: {}
 	});
 	//Queensland pictures
-	this.queenslandPictures = $resource('http://data.gov.au/api/action/datastore_search?resource_id=:id&limit=1000',{},{
+	this.queenslandPictures = $resource('https://data.gov.au/api/action/datastore_search?resource_id=:id&limit=1000',{},{
 		get:{}
 	});
 	//photographs
-	this.photographs = $resource('http://data.gov.au/api/action/datastore_search?resource_id=:id&limit=1000',{},{
+	this.photographs = $resource('https://data.gov.au/api/action/datastore_search?resource_id=:id&limit=1000',{},{
 		get:{}
 	});
 
