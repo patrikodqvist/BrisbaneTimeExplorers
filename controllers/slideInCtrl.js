@@ -11,7 +11,7 @@ brissyGame.controller('slideInCtrl', ['$scope', '$routeParams', '$rootScope', 'L
     //For the future to jump back to the overworld
     $scope.backButton = function() {
 		Library.loaded = false;
-		$window.location.href = '#!/levelmenu';
+		//$window.location.href = '#!/levelmenu';
 
 	}
 	//Checks if the game is created

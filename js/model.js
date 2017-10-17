@@ -2,10 +2,46 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Loading Variable
 	this.loading = false;
 	this.loaded = false;
+	this.mapLoad = false;
 	//Selected level
 	this.level = "";
 	//To save elements from the randomfunction
-	this.tempArray = [];	
+	this.tempArray = [];
+	//Data
+	this.dataSets = {};
+	//Merges the screen
+	this.mergeLists = function(realEstate,queenslandPictures,photographs) {
+		this.dataSets = realEstate.concat(queenslandPictures).concat(photographs);	
+	}
+	//Search method Using Fuse.js
+	this.search = function(word) {
+		var options = {
+			shouldSort: true,
+			threshold: 0.6,
+			location: 0,
+			distance: 100,
+			maxPatternLength: 32,
+			minMatchCharLength: 1,
+			keys: [
+			"dc:title",
+			"dc:description",
+		]
+		};		
+		var fuse = new Fuse(this.dataSets, options); 
+		var result = fuse.search(word);
+		return result;
+	}
+	//Finds specific object for detailView
+	this.findObject = function(id, title) {
+		var object = {};
+		for (var i=0; i < this.dataSets.length; i++) {
+			if (this.dataSets[i]["_id"]==id && this.dataSets[i]["dc:title"] == title) {
+				object = this.dataSets[i];
+				
+			}
+		}
+		return object;
+	}
 	//Randints 
 	this.getRandomArbitrary = function(min, max) {
   		return parseInt(Math.random() * (max - min) + min);

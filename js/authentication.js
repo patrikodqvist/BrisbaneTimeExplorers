@@ -75,7 +75,13 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 				ref.child($rootScope.currentUser.id).child("levelThree").set(markers);
 			}
 			else {
-				ref.child($rootScope.currentUser.id).child("levelFour").set(markers);
+				console.log(markers);
+				ref.child($rootScope.currentUser.id).child("levelFour").set(markers).then(function() {
+					console.log("success");
+					//Sends the user to customize its character
+					$window.location.href = "#!/character";
+				});
+				
 			}
 		},
 		//Saves down the completed markers

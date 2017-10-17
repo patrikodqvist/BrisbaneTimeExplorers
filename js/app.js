@@ -23,6 +23,14 @@ function($routeProvider) {
 		controller: 'homeCtrl',
 		templateUrl: 'partials/homelevel.html' 
 	}).
+	when('/search', {
+		controller: 'searchCtrl',
+		templateUrl: 'partials/search.html' 
+	}).
+	when('/record', {
+		controller: 'recordCtrl',
+		templateUrl: 'partials/record.html' 
+	}).
 	otherwise('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'partials/login.html'

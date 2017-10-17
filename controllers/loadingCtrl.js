@@ -10,6 +10,7 @@ brissyGame.controller('loadingCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 				$rootScope.levelTwo = Library.loadOldMarkers($rootScope.currentUser.levelTwo, $rootScope.queenslandPictures);
 				$rootScope.levelThree = Library.loadOldMarkers($rootScope.currentUser.levelThree, $rootScope.queenslandPictures);
 				$rootScope.levelFour = Library.loadOldMarkers($rootScope.currentUser.levelFour, $rootScope.photographs);
+				Library.mergeLists($rootScope.realEstate,$rootScope.queenslandPictures,$rootScope.photographs);
 				//Sends the user to the levelmenu
 				$window.location.href = "#!/levelmenu";
 			}
@@ -36,13 +37,17 @@ brissyGame.controller('loadingCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 				//LevelFour
 				var records = Library.randomMarkers($rootScope.photographs);
 				$rootScope.levelFour = records[0].slice(0,5);
+
 				var idFour = {};
 				for (var i=0; i < 5; i++) {
-					idTwo[""+i] = records[1][i];
+					idFour[""+i] = records[1][i];
 				}
+
+				
+
+
+
 				Authentication.saveMarkers("levelFour",idFour);
-				//Sends the user to customize its character
-				$window.location.href = "#!/character"
 			}
 		}
 		$scope.loadGame();

@@ -1,85 +1,46 @@
-<div class="container-fluid">
-	<div class="row" style="height:3em;">
-		<div class="col-md-3">
-			<input ng-model="number" ng-submit="sort(number)"></input>
-		</div>
-		<div class="col-md-3">
-			<button ng-submit="sort(number)" ng-click="sort(number)">
-				filter
-			</button>	
+<div class="container-fluid" style="overflow: scroll;">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				
+				<div class="col-md-4">
+					<form ng-submit="search(input)">
+					<input placeholder="keyword" ng-model="input" style="float:left;"></input>
+					<button style="float: right" >Search</button>
+					</form>
+				</div>
+				
+				
+				<div class="col-md-2">
+					<a ng-href="#!/levelmenu"><button ng-click="backButton()">Back</button></a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-2">
-			<button ng-model="input" ng-click="search()">
-				Real Estate
-			</button>
+		</div>
 
-		</div>
-		<div class="col-md-2">
-			<button ng-click="maps()">
-				Digitized maps
-			</button>
-		</div>
-		<div class="col-md-2">
-			<button ng-click="pictures()">
-				Pictures
-			</button>
-		</div>
-		<div class="col-md-2">
-			<button ng-click="wwOne()">
-				WWI Records
-			</button>
-		</div>
-		<div class="col-md-2">
-			<button ng-click="wwOnePictures()">
-				WWI Pictures
-			</button>
-		</div>
-		<div class="col-md-2">
-			<button ng-click="convicts()">
-				Convicts
-			</button>
-		</div>
-	</div>
-	<div class="row" style="margin-top: 1em;">
-		<div class="col-md-2">
-			<button ng-click="miningAccidents()">
-				Mining Accidents
-			</button>
-		</div>
-		<div class="col-md-2">
-			<button ng-click="newsPapers()">
-				Old Papers
-			</button>
-		</div>
-	</div>
-	<div class="row" ng-repeat="record in recordList" style="border: 1px solid orange; margin-top: 1em;" ng-show="realMaps">
-		<div class="col-md-9">
-			<div class="row">
+		<div class="col-md-8">
+			<div class="row" ng-repeat="record in returnResults()" style="border: 1px solid black;">
 				<div class="col-md-1">
 				</div>
-				
-				<div class="col-md-9" style="color:black">
-					<h2>{{record['dc:title']}}</h2>
+				<a ng-href="" ng-click="forward(record['dc:title'],record['_id'])">
+				<div class="col-md-2">
+					<img ng-src="{{record['150_pixel_jpg']}}" style="max-height:400px ;max-width:300px;">
+					</img>
 				</div>
+				<div class="col-md-4">
+					<h3>{{record["dc:title"]}}</h3>
+					<p>{{record["dc:description"]}}</p>
+				</div>
+				</a>
 			</div>
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-9">
-					<img ng-src="{{record['150_pixel_jpg']}}"/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				
-				<div class="col-md-9">
-					<p>{{record['dc:description']}}</p>
-				</div>
-			</div>
+		</div>
 
+		<div class="col-md-2">
 		</div>
 	</div>
 </div>
