@@ -41,13 +41,16 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 	    					}
 	    					else {
 	    						//Opens the marker
-			    				var slideIn = document.getElementById('slideIn');
+			    				var slideIn = document.getElementById('sliderTwo');
 			    				slideIn.style.display='none';
+			    				var map = document.getElementById("map");
+								map.className = "col-md-9";
 			    				var id = 'landmark'+this.id;
 			    				var infoPage = document.getElementById(id);
 			    				infoPage.style.display='';
 			    				var land = document.getElementById('landmark');
 			    				land.style.display='';
+			    				
 		    				}
 		    			}
 			
@@ -58,31 +61,43 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 	    }
 	//When the user finds a clue
     $scope.cluepage = function() {
-    	var test = confirm("You found a clue");
-    	if (test) {
-    		for (marker in $scope.markerList) {
-    			if ($scope.markerList[marker].id == $scope.id) {
-    				$scope.markerList[marker].setIcon("https://www.google.com/mapfiles/marker_green.png");
-    				$rootScope.currentUser["level"+Library.level] = Library.markerChangeState($scope.id,$rootScope.currentUser["level"+Library.level]);
-    				//Saves it to Firebase
-    				Authentication.saveClue($rootScope.currentUser["level"+Library.level],Library.level);
-    				$rootScope.currentUser.currancy+=100;
-    				//Saves it to Firebase
-    				Authentication.addMoney($rootScope.currentUser.currancy);	 
-    			}
+    	angular.forEach($rootScope.currentUser["level"+Library.level], function(key,value) {
+    		if (key.id == $scope.id) {
+				if (key.clue == 1 || key.clue == 2) {
+					var test = confirm("You found a clue");
+					console.log(key.completed);
+					key.completed=true;
+				}
+				else {
+					key.completed=true;
+				}
     		}
-    	}
+    	});
+    	//sets it green
+		for (marker in $scope.markerList) {
+			if ($scope.markerList[marker].id == $scope.id) {
+				$scope.markerList[marker].setIcon("https://www.google.com/mapfiles/marker_green.png");
+				$rootScope.currentUser["level"+Library.level] = Library.markerChangeState($scope.id,$rootScope.currentUser["level"+Library.level]);
+				//Saves it to Firebase
+				Authentication.saveClue($rootScope.currentUser["level"+Library.level],Library.level);
+				$rootScope.currentUser.currancy+=100;
+				//Saves it to Firebase
+				Authentication.addMoney($rootScope.currentUser.currancy);	 
+			}
+		}
     	$scope.closeLandmark();
     }
     //Closing of the landmark info
     $scope.closeLandmark = function() {
-    	var slideIn = document.getElementById('slideIn');
+    	var slideIn = document.getElementById('sliderTwo');
 		slideIn.style.display='';
 		var id = 'landmark'+$scope.id;
 		var infoPage = document.getElementById(id);
 		infoPage.style.display='none';
 		var land = document.getElementById('landmark');
 		land.style.display='none';
+		var map = document.getElementById("map");
+		map.className = "col-md-11";
     }
     //Makes sure that the map is constructed
     $scope.initMap();
@@ -91,20 +106,19 @@ brissyGame.controller('homeCtrl', ['$scope', '$routeParams', '$rootScope', 'Libr
 	$scope.animations = function() {
 		$(document).ready(function() {
 			$('#chestbutton').mouseenter(function(){
-        		$('img#chest').attr("src","images/chest_open.png");
+        		$('img#chest').attr("src","images/chest_hover.gif");
     		});
 
     		$('#chestbutton').mouseleave(function(){
-        		$('img#chest').attr("src","images/chest_closed.png");
+        		$('img#chest').attr("src","images/chest_closed.gif");
     		});
 
     		$('img#chest').mouseenter(function(){
-        		$(this).attr("src","images/chest_open.png");
-        		
+        		$(this).attr("src","images/chest_hover.gif");
     		});
 
     		$('img#chest').mouseleave(function(){
-        		$(this).attr("src","images/chest_closed.png");
+        		$(this).attr("src","images/chest_closed.gif");
     		});
 
 		    $('img.avatarsm').mouseenter(function(){

@@ -1,42 +1,110 @@
-<div class="container-fluid">
-    <div class="row" style="background-color: rgba(56,56,56,0.5)">
+<div class="container-fluid" id="avatarscreen" ng-hide="genderChosen==true">
+    <div class="row">
+        <a href="" ng-click="genderChoice('boy')">
+            <div class="col-md-6">
+                <h1>Boy</h1>
+            </div>
+        </a>
+        <a href="" ng-click="genderChoice('girl')"> 
+            <div class="col-md-6">
+                <h1>Girl</h1>
+            </div>
+        </a>
+    </div>
+</div>
+    
+<div class="container-fluid" id="avatarscreen" ng-show="genderChosen==true">
+    <!--Girl-->
+   <div class="row" id="avatarselection" ng-show="boy==false">
+        <div class="col-md-1 avatarcolumns">
+        </div>
+        <div class="col-md-5 avatarcolumns" id="avatarviewFemale">
+            <div class="row" style="height:52%;">
+            </div>
+            <div class="row" style="height:15%;" id="ftopselection">
+            </div>
+            <div class="row" style="height:10%;" id="fbottomselection">
+            </div>
+            <div class="row" style="height:23%;" id="fshoeselection">
+            </div>
+        </div>
+        <div class="col-md-6 avatarcolumns" style="background-color: grey;">
+            <div class="row">
+                <h1>{{currentUser.username}}</h1>
 
-        <div class="col-md-3" style="background-color: #383838; position:fixed; height:100%;">
-            <img id="logosidebar" src="images/logo_white.png">
-            <h2 class="sidebartext">Choose an Avatar</h2>
-            <p class="sidebartext">Your avatar will help take you back in time to explore Brisbane! 
-                Along the way, you will collect treasure. This will allow you to buy new avatars to play with.</p>
-        </div>
-         <div class="col-md-3">
-        </div>
-         <div class="col-md-1">
-        </div>
-         <div class="col-md-2">
-            <h2>Man 1</h2>
-            <img class="avatarsm" src="images/man1.svg"/>
-        </div>
-
-         <div class="col-md-2">
-            <h2>Man 2</h2>
-            <img class="avatarsm" src="images/man2.svg"/>
-        </div>
-
-         <div class="col-md-2">
-            <h2>Woman 1</h2>
-            <img class="avatarsf" src="images/woman1.svg"/>
-        </div>
-         <div class="col-md-2">
-            <h2>Woman 2</h2>
-            <img class="avatarsf" src="images/woman2.svg"/>
+                <table>
+                    <th colspan="4">Select Your Outfit</th>
+                    <tr>
+                        <td><div class="option"><img src="images/icon_top.png" class="topoption"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_silver_top.png" class="topoption" id="ftopchoice1"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_pink_top.png" class="topoption" id="ftopchoice2"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_blue_top.png" class="topoption" id="ftopchoice3"/></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="option"><img src="images/icon_bottom.png" class="bottomoption"></div></td>
+                        <td><div class="option"><img src="images/iconfemale_silver_bottom.png" class="bottomoption" id="fbottomchoice1"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_pink_bottom.png" class="bottomoption" id="fbottomchoice2"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_blue_bottom.png" class="bottomoption" id="fbottomchoice3"/></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="option"><img src="images/icon_shoes.png" class="shoeoption"/></td>
+                        <td><div class="option"><img src="images/iconfemale_silver_shoes.png" class="shoeoption" id="fshoechoice1"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_pink_shoes.png" class="shoeoption" id="fshoechoice2"/></div></td>
+                        <td><div class="option"><img src="images/iconfemale_blue_shoes.png" class="shoeoption" id="fshoechoice3"/></div></td>
+                    </tr>
+                </table>
+                <button id="savefemale">Proceed</button>
+            </div>
+            <div class="row">
+                {{errorMessage}}
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
+    <!--Boy-->
+    
+    <div class="row" id="avatarselection" ng-show="boy==true">
+        <div class="col-md-1 avatarcolumns">
         </div>
-
-        <div class="col-md-9">
-           <a ng-href="#!/levelmenu"> <button>Save Avatar</button></a>
+        <div class="col-md-5 avatarcolumns" id="avatarviewMale">
+            <div class="row" style="height:52%;">
+            </div>
+            <div class="row" style="height:20%;" id="topselection">
+            </div>
+            <div class="row" style="height:17%;" id="bottomselection">
+            </div>
+            <div class="row" style="height:9%;" id="shoeselection">
+            </div>
+        </div>
+        <div class="col-md-6 avatarcolumns" style="background-color: grey;">
+            <div class="row">
+                <h1>SebastianZuloaga</h1>
+                <table>
+                    <th colspan="4">Select Your Outfit</th>
+                    <tr>
+                        <td><div class="option"><img src="images/icon_top.png" class="topoption"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_red_top.png" class="topoption" id="topchoice1"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_green_top.png" class="topoption" id="topchoice2"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_silver_top.png" class="topoption" id="topchoice3"/></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="option"><img src="images/icon_bottom.png" class="bottomoption"></div></td>
+                        <td><div class="option"><img src="images/iconmale_red_bottom.png" class="bottomoption" id="bottomchoice1"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_green_bottom.png" class="bottomoption" id="bottomchoice2"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_silver_bottom.png" class="bottomoption" id="bottomchoice3"/></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="option"><img src="images/icon_shoes.png" class="shoeoption"/></td>
+                        <td><div class="option"><img src="images/iconmale_red_shoes.png" class="shoeoption" id="shoechoice1"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_green_shoes.png" class="shoeoption" id="shoechoice2"/></div></td>
+                        <td><div class="option"><img src="images/iconmale_silver_shoes.png" class="shoeoption" id="shoechoice3"/></div></td>
+                    </tr>
+                </table>
+                <button id="savemale">Proceed</button>
+            </div>
+            <div class="row">
+                {{errorMessage}}
+            </div>
         </div>
     </div>
 </div>
-
+    

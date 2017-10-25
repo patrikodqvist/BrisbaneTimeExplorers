@@ -89,39 +89,6 @@ img {
   border: 0;
 }
 
-img #splashlogo {
-  border: 0;
-  height:400px;
-  width: 400px;
-}
-
-
-#splashlogo:hover {
- opacity: 0.8;
-}
-
-#logosidebar {
-  max-height: 250px; 
-  max-width: 250px;
-  padding-top: 30px;
-}
-
-.avatarsm{
-  height: 500px ;
-  width: 100px ;
-  padding: 0px;
-}
-
-.avatarsf{
-  height: 540px ;
-  width: 120px ;
-  padding: 0px;
-}
-
-.light {
-  box-shadow: 0px 0px 10px white;
-}
-
 svg:not(:root) {
   overflow: hidden;
 }
@@ -164,17 +131,6 @@ button {
 
 button:hover{
   background-color: #660C0C;
-}
-
-button.sidebarbutton {
-  border: none;
-  width: 100%; 
-  background-color: rgba(56, 56, 56, 1);
-  transition: background-color 2s;
-}
-
-.sidebarbutton:hover {
-  background-color: rgba(56, 56, 56, 0.5);
 }
 
 button,
@@ -321,8 +277,7 @@ th {
   font-family: 'Glyphicons Halflings';
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
- /* src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-*/
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype')
 }
 .glyphicon {
   position: relative;
@@ -1592,11 +1547,7 @@ address {
   font-style: normal;
   line-height: 1.42857143;
 }
-.sidebartext {
-  color: #EEEFEA;
-  padding: 5px 0px;
-  line-height: 2em;
-}
+
 code,
 kbd,
 pre,
@@ -6512,7 +6463,6 @@ button.close {
   background-image: url("images/old_brisbane.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
 }
 @media screen and (min-width: 768px) {
   .carousel-control .glyphicon-chevron-left,
@@ -6839,3 +6789,198 @@ button.close {
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
+
+/*This is the new code added to the bootstrap*/
+
+/*Code for the Splash slide in*/
+
+.splash {
+  color: #FFFFFF;
+  background-color: #383838;
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  padding: 0px;
+  height:100%;
+}
+
+.halfrow{
+  height:50%;
+}
+
+#arrowslide {
+  width: 30%;
+  font-size: 1.5em;
+  padding: 0.2em;
+  border: solid white 2px;
+  border-radius: 10px;
+  margin: 0px auto;
+  transition: background-color 2s, color 2s;
+}
+
+#arrowslide:hover{
+  color:black;
+  background-color: #FFFFFF;
+}
+
+/*Code for the Sign On */
+
+#splashlogo {
+  border: 0;
+  max-height: 200px;
+  max-height: 200px;
+}
+
+
+#splashlogo:hover {
+ opacity: 0.8;
+}
+
+
+/*Code for the Sidebar*/
+
+#sliderTwo {
+  background-color: #474747; 
+  height: 100%;
+  transition: background-color 1s ease;
+}
+
+#sliderTwo:hover{
+  background-color: #383838;
+}
+
+#sidebar10{
+  background-color: #383838;
+  height: 100%;
+  color: white;
+  padding-top: 5em;
+}
+
+.sidebar{
+  background-color: #383838; 
+  position:absolute;
+  left: 0%;
+  top: 0px;
+  padding: 0px;
+  height:100%;
+}
+
+.sidebar .row{
+  padding: 1em 0em;
+}
+
+#logosidebar {
+  max-height: 200px; 
+  max-width: 200px;
+  padding-top: 30px;
+}
+
+button.sidebarbutton {
+  border: none;
+  width: 100%; 
+  border-radius: 0px;
+  background-color: #383838;
+  transition: background-color 1s;
+}
+
+.sidebarbutton:hover {
+  background-color: #666666;
+}
+
+.sidebaravatar{
+    max-width: 25%;
+}
+
+.sidebar .username {
+  color: #EEEFEA;
+  padding: 5px 0px;
+  line-height: 2em;
+}
+
+.sidebar .currency_indicator,
+.sidebar p {
+  color: #FFFFFF;
+}
+
+.sidebar div.col-md-2 {
+  background-color: #474747;
+}
+
+div.sidebarcols{
+  height: 100%;
+}
+
+#fineprint{
+  font-size: 0.8em;
+  padding: 0em 1em;
+}
+
+/*Code for the Avatar Selection*/
+
+#avatarselection{
+  position: fixed;
+  width:100%;
+  height:100%;
+}
+
+.avatarcolumns{
+  height:100%;
+}
+
+.avatarrow{
+  width:25%;
+}
+
+#avatarviewMale{
+  background-image: url('images/male_avatar.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#avatarviewFemale{
+  background-image: url('images/female_avatar.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+table{
+  width:100%;
+  margin: auto 0px;
+}
+
+th {
+  text-align: center;
+}
+/* Code for the Progress Page */
+
+#cluecontainer{
+  background-image: url('images/brisbeaut.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: 2em 1em;
+}
+
+.coveredclue{
+  height: 20em;
+  width:25%;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.uncoveredclue{
+  height: 20em;
+  width:25%;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+/*Code for the About Page*/
+
+.centertitle{
+  text-align: center;
+}
+
+.nametitle{
+  color: #8b501c;
+  font-weight: bold;
+}

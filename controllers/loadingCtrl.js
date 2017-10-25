@@ -18,7 +18,8 @@ brissyGame.controller('loadingCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 				//LevelOne
 				var records = Library.randomMarkers($rootScope.realEstate);
 				$rootScope.levelOne = records[0]
-				Authentication.saveMarkers("levelOne",records[1]);
+				var markers = Library.cluePlacer(records[0], records[1])
+				Authentication.saveMarkers("levelOne",markers);
 				//LevelTwo And Three
 				var records = Library.randomMarkers($rootScope.queenslandPictures);
 				$rootScope.levelTwo = records[0].slice(0,5);
@@ -32,8 +33,10 @@ brissyGame.controller('loadingCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 				for (var i=5; i < 10; i++) {
 					idThree[""+i] = records[1][i];
 				}
-				Authentication.saveMarkers("levelTwo",idTwo);
-				Authentication.saveMarkers("levelThree",idThree);
+				var markersTwo = Library.cluePlacer($rootScope.levelTwo, idTwo)
+				var markersThree = Library.cluePlacer($rootScope.levelThree, idThree)
+				Authentication.saveMarkers("levelTwo",markersTwo);
+				Authentication.saveMarkers("levelThree",markersThree);
 				//LevelFour
 				var records = Library.randomMarkers($rootScope.photographs);
 				$rootScope.levelFour = records[0].slice(0,5);
@@ -42,12 +45,8 @@ brissyGame.controller('loadingCtrl', ['$scope', '$routeParams', '$rootScope', 'L
 				for (var i=0; i < 5; i++) {
 					idFour[""+i] = records[1][i];
 				}
-
-				
-
-
-
-				Authentication.saveMarkers("levelFour",idFour);
+				var markersFour = Library.cluePlacer($rootScope.levelFour, idFour)
+				Authentication.saveMarkers("levelFour",markersFour);
 			}
 		}
 		$scope.loadGame();

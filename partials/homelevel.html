@@ -1,13 +1,11 @@
 <div class="container-fluid">
     <div class="row" >
-        <div class="col-md-3" style="background-color: #383838; height:100%;" id="slideIn" ng-controller="slideInCtrl">
-            <ng-include src="'partials/slidein.html'"></ng-include>
-        </div>
-        <div class="col-md-9" id="map" style="height: 100%;">
+        <ng-include ng-controller="slideInCtrl" src="'partials/slidein.html'"></ng-include>
+        <div class="col-md-11" id="map" style="height: 100%; position: relative; color: white">
         </div>
 
-        <div class="col-md-3" style="background-color: #ccb269; height: 100%; display: none;" id="landmark">
-            <div class="row" ng-repeat="obj in recordsLists" id="landmark{{obj['_id']}}" style="display: none; ">
+        <div class="col-md-3" style="background-color: #383838; height: 100%; display: none; overflow: scroll;" id="landmark">
+            <div class="row" ng-repeat="obj in recordsLists" id="landmark{{obj['_id']}}" style="display: none; color: white ">
                 <div class="col-md-12">
                     <div class="row">
                         <h2>Selected Landmark</h2>
@@ -23,17 +21,16 @@
                     </div>
                     <div class="row" >
                         <!-- The description here should change based on the landmark that is clicked-->
-                        <p style="background-color: #ccb269; overflow: hidden;">{{obj["dc:description"]}}</p>
+                        <p style="background-color: #383838;" >{{obj["dc:description"]}}</p>
                     </div>
                     <div class="row">
                         <ul>
                             <!-- The bullet points here should change based on the landmark that is clicked. These are only suggestions, we could add others or delete some.-->
-                            <li><strong>Year: {{obj.year}} </strong></li>
-                            <li><strong>Place: </strong></li>
+                            <strong>Year: {{obj.year}} </strong>
                         </ul>
                     </div>
                     <div class="row" style="padding: 50px 15px;">
-                        <img id="chest" src="images/chest_closed.png"/> 
+                        <img id="chest" src="images/chest_closed.gif"/> 
                     </div>
 
                     <div class="row">

@@ -7,6 +7,7 @@ brissyGame.controller('loginCtrl', ['$scope', '$routeParams', '$rootScope', 'Lib
 	$scope.signUpTest = false;
 	//Counts the loaded data
 	$rootScope.loads = 0;
+	//LoadingSymbol
 	//updates the html
 	$scope.changeState = function() {
 		$scope.state = true;
@@ -18,11 +19,10 @@ brissyGame.controller('loginCtrl', ['$scope', '$routeParams', '$rootScope', 'Lib
 	//Checks if the data is loaded
 	$scope.checkLoad = function(num) {
 		if ($rootScope.loads == 3) {
-				console.log("Loaded" + num);
-				if ($rootScope.loggedIn) {
-					$window.location.href = "#!/loading"; 
-				}
+			if ($rootScope.loggedIn) {
+				$window.location.href = "#!/loading";	
 			}
+		}
 	}
 	//Logs in the user
 	$scope.login = function(email,password) {
@@ -34,15 +34,21 @@ brissyGame.controller('loginCtrl', ['$scope', '$routeParams', '$rootScope', 'Lib
 	}
 	//Sign up
 	$scope.signUp = function(username,email,password) {
+		if (username) {
 		var user = {
 			username:username,
 			email:email,
 			password:password};
 		Authentication.createNewUser(user);
-		$scope.getData();	
+		$scope.getData();
+		}
+		else {
+			$rootScope.errorMessage="You need a username";
+		}	
 	}
 	//Retrieves the data
 	$scope.getData = function() {
+		$rootScope.loads = 0;
 		//Retriveing real Estate data
 		var id = "f5ecd45e-7730-4517-ad29-73813c7feda8";
 		Library.realEstate.get({id:id}, function(output) {

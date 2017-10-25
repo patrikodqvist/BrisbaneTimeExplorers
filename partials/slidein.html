@@ -1,23 +1,36 @@
-
-<img id="logosidebar" src="images/logo_white.png"/>
-<h3 class="sidebartext">{{currentUser.username}}</h3>
-<div class="navbar" style="width:100%; color:white;" >
-    <a ng-if=checkGame() ng-click="backButton()"><button class="sidebarbutton">LEVEL MENU</button></a>
-    Currancy: ${{currentUser.currancy}}.0
-    <a href=""><button class="sidebarbutton">PROGRESS</button></a>
-    <a href="#!/search"><button class="sidebarbutton">Search</button></a>
-    <div class="row" style="padding:20px 0px;">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8" style="background-color: white; border-radius: 50px; padding:5px 5px ; color:black;">
-            <h4 class="textbubble">Hey Patrik!</h4>
-            <p class="textbubble">Here you can select the level you want to play by clicking on it!</p>
-        </div>
-        <div class="col-md-2">
-        </div>
-    </div>
+<div class="col-md-3" style="background-color: #383838; padding-top: 0;" ng-show="clicked==true">
     <div class="row">
-        <img src="images/man2.svg" style="max-height:250px;max-width:250px;"></img>
+        <div class="col-md-10" id="sidebar10">
+            <div class="row">
+                <img id="logosidebar" src="images/adventure_logo.png"/>
+            </div>
+            <div class="row">
+                <img class="sidebaravatar" src="{{currentUser.avatarIMG}}"></img>
+            </div>
+            <div class="row">
+                <h3 class="username">{{currentUser.username}}</h3>
+                <p class="currency_indicator">Currancy: ${{currentUser.currancy}}.0</p>
+            </div>
+            <div class="row navbar">
+                <a ng-if=checkGame() ng-click="backButton()"><button class="sidebarbutton">LEVEL MENU</button></a>
+                <a href="#!/progress"><button class="sidebarbutton">PROGRESS</button></a>
+                <a href="#!/search"><button class="sidebarbutton">Search Database</button></a>
+                <a href="#!/aboutus"><button class="sidebarbutton">About Us</button></a>
+                <a href="#!/references"><button class="sidebarbutton">References</button></a>
+                <a ng-click="signout()"><button class="sidebarbutton">Log Out</button></a>
+            </div>
+            <div class="row">
+                <p id="fineprint">Brisbane Time Explorers has been developed for educational purposes
+                    by Sanjana Bhatnagar, Jinyu Wang, Patrik Odqvist, and Sebastian Zuloaga. 
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2" style="background-color: #474747; height: 100%">
+            <a href="" ng-click="clickAction()" ><span class="glyphicon glyphicon-menu-hamburger"  style="font-size: 2em; color: white"></span></a>
+        </div>
     </div>
-    <a ng-click="signout()"><button class="sidebarbutton">Log Out</button></a>
+</div>
+
+<div class="col-md-1"  id="sliderTwo" ng-hide="clicked==true">
+    <a href="" ng-click="clickAction()" ><span class="glyphicon glyphicon-menu-hamburger"  style="font-size: 2em; color: white"></span></a>
 </div>

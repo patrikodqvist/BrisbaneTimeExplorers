@@ -3,6 +3,7 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	this.loading = false;
 	this.loaded = false;
 	this.mapLoad = false;
+	this.progress=false;
 	//Selected level
 	this.level = "";
 	//To save elements from the randomfunction
@@ -45,6 +46,38 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 	//Randints 
 	this.getRandomArbitrary = function(min, max) {
   		return parseInt(Math.random() * (max - min) + min);
+	}
+	//cluePlacer 
+	this.cluePlacer = function(markers, ids) {
+		var placement = true;
+		var len = markers.length;
+		var numClues = 0;
+		oldID = "";
+		returnIDS = ids;
+
+		for (var i=0; i<len; i++) {
+			if (i==2) {
+				returnIDS = this.addClueToMarker(i, returnIDS, 1);
+			}
+			else if (i==3) {
+				returnIDS = this.addClueToMarker(i, returnIDS, 2);
+			}
+		} 
+		return returnIDS;
+	}
+	//Gives the marker the clue
+	this.addClueToMarker = function(clue, ids, num) {
+		var counter = 0;
+		angular.forEach(ids, function(key,value) {
+			if (counter == clue) {
+				key.clue = num;
+				counter+=1;
+			}
+			else {
+				counter+=1;
+			}
+		});
+		return ids;
 	}
 	//Finds the year of the data string
 	this.getYear = function(string) {
@@ -119,6 +152,7 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 								array[obj]["dc:title"] = array[obj].title
 								array[obj]["dc:description"] = array[obj].description
 								array[obj]["150_pixel_jpg"] = array[obj]["150_pixel"];
+								array[obj]["1000_pixel_jpg"] = array[obj]["1000_pixel"];
 								records.push(array[obj])
 							}
 						}
@@ -151,9 +185,11 @@ brissyGame.factory('Library',function ($resource,$cookieStore,$rootScope,$window
 			else if (this.testId(object)) {
 			}
 			else {
+
 				ids["" + index] = {
 					id:records[obj]["_id"],
-					completed: false
+					completed: false,
+					clue: ""
 				}
 				this.tempArray.push(records[obj]);
 				index+=1;

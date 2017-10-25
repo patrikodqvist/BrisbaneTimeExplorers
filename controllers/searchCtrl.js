@@ -1,8 +1,9 @@
 brissyGame.controller('searchCtrl', ['$scope', '$routeParams', '$rootScope', 'Library', 'Authentication','$window', function($scope,$routeParams,$rootScope, Library, Authentication,$window) {
+	//Search function
 	$scope.search = function(input) {
 		$scope.searchResults = Library.search(input);
 	}
-
+	//Gives the objects to the page
 	$scope.returnResults = function() {
 		return $scope.searchResults;
 	}

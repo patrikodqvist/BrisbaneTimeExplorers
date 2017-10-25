@@ -31,6 +31,19 @@ function($routeProvider) {
 		controller: 'recordCtrl',
 		templateUrl: 'partials/record.html' 
 	}).
+	when('/progress', {
+		controller: 'progressCtrl',
+		templateUrl: 'partials/progress.html' 
+	}).
+	when('/aboutus', {
+		controller: 'slideInCtrl',
+		templateUrl: 'partials/about.html' 
+	}).
+	when('/references', {
+		controller: 'slideInCtrl',
+		templateUrl: 'partials/references.html' 
+	}).
+
 	otherwise('/login', {
 		controller: 'loginCtrl',
 		templateUrl: 'partials/login.html'

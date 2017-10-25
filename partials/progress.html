@@ -1,0 +1,36 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <ng-include ng-controller="slideInCtrl" src="'partials/slidein.html'"></ng-include>
+        <div class="col-md-11" id="progressPage">
+            <div class="row">
+                <h1>Game Progress</h1>
+            </div>
+            <div class="row" id="cluecontainer">
+                <div class="col-md-3 coveredclue" id="levelThree1">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelTwo1">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelOne1">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelFour2">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelOne2">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelThree2">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelTwo2">
+                </div>
+                <div class="col-md-3 coveredclue" id="levelFour1">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <h1>{{progressPros()}}% Completed</h1>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

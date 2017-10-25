@@ -1,14 +1,12 @@
-
 <div class="container-fluid" ng-hide="state==true">
     <div class="row">
         <div class="col-md-12">
-            <h1>Demo</h1>
+            <h1></h1>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
-            <img id="splashlogo" src="images/logo_grey.png" style="max-height:400px;" style="max-width: 400px;"/>
+            <img id="splashlogo" src="images/adventure_logo.png" style="max-height:400px;" style="max-width: 400px;"/>
         </div>
     </div>
 
@@ -23,19 +21,39 @@
             <p class="blockquote"><strong>Developed by: Sanjana Bhatnagar, Patrik Odqvist, Jinyu Wong, Sebastian Zuloaga </strong> </p>
         </div>
     </div>
+    <!--Spaash Screen-->
+     <div class="row">
+            <div class="col-md-12 splash">
+                <div class="row halfrow">
+                </div>
+                <div class="row halfrow">
+                    <img src="images/place.gif"/>
+                    <h2>Brisbane Time Explorers</h2>
+                    <div class='col-md-5'>
+                    </div>
+                    
+                    <div class='col-md-2'>
+                        <div id="arrowslide">&#8593</div>
+                    </div>
+
+                    <div class='col-md-5'>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
-<div class="container-fluid" ng-show=state==true;>
+<div class="container-fluid" ng-show=state==true; >
     <div class="row">
         <div class="row" style= "padding: 40px 0px;">
         </div>
         
         <div class="row">
             <div class="col-md-12">
-                <img id="splashlogo" src="images/logo_grey.png" style="max-height:200px;" style="max-width: 200px;"/>
+                <img id="splashlogo" src="images/adventure_logo.png" style="max-height:200px;" style="max-width: 200px;"/>
             </div>
         </div>
 
-        <div class= "row" id="backgroundbrisbane">
+        <div class= "row" >
             <div class="col-md-3">
             </div>
 
@@ -58,6 +76,9 @@
                         <div class="row" style="padding: 10px 0px;">
                         	<button ng-click="signUpPopUp()" style="width: 80%; padding: 15px 0px;">Sign Up</button>
                         </div>
+                        <div class="row">
+                        	{{errorMessage}}
+                        </div>
                 </div>
                 <div class="col-md-10" ng-show="signUpTest==true" style="padding: 0px 15px;">
                     <form ng-submit="signUp(username,email,password)" style="width: 100%;">
@@ -73,6 +94,9 @@
                     
                         <div class="row" style="padding: 10px 0px;">
                         	<button style = "width: 80%; padding: 15px 0px;">Sign Up</button>
+                        </div>
+                        <div class="row">
+                        	{{errorMessage}}
                         </div>
                     </form>
                 </div>
@@ -90,3 +114,4 @@
         </div>
     </div>
 </div>
+

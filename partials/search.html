@@ -1,46 +1,40 @@
-<div class="container-fluid" style="overflow: scroll;">
+<div class="container-fluid" style="overflow: scroll;" >
 	<div class="row">
-		<div class="col-md-12">
+		<ng-include ng-controller="slideInCtrl" src="'partials/slidein.html'"></ng-include>
+		<div class="col-md-11" id="searchfield" >
 			<div class="row">
 				<div class="col-md-1">
 				</div>
-				
 				<div class="col-md-4">
 					<form ng-submit="search(input)">
 					<input placeholder="keyword" ng-model="input" style="float:left;"></input>
 					<button style="float: right" >Search</button>
 					</form>
 				</div>
-				
-				
+			</div>
+			<div class="row" >
 				<div class="col-md-2">
-					<a ng-href="#!/levelmenu"><button ng-click="backButton()">Back</button></a>
+				</div>
+
+				<div class="col-md-8">
+					<div class="row" ng-repeat="record in returnResults()" style="border: 1px solid black;">
+						<div class="col-md-1">
+						</div>
+						<a ng-href="" ng-click="forward(record['dc:title'],record['_id'])">
+						<div class="col-md-2">
+							<img ng-src="{{record['150_pixel_jpg']}}" style="max-height:400px ;max-width:300px;">
+							</img>
+						</div>
+						<div class="col-md-4">
+							<h3>{{record["dc:title"]}}</h3>
+							<p>{{record["dc:description"]}}</p>
+						</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-2">
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-
-		<div class="col-md-8">
-			<div class="row" ng-repeat="record in returnResults()" style="border: 1px solid black;">
-				<div class="col-md-1">
-				</div>
-				<a ng-href="" ng-click="forward(record['dc:title'],record['_id'])">
-				<div class="col-md-2">
-					<img ng-src="{{record['150_pixel_jpg']}}" style="max-height:400px ;max-width:300px;">
-					</img>
-				</div>
-				<div class="col-md-4">
-					<h3>{{record["dc:title"]}}</h3>
-					<p>{{record["dc:description"]}}</p>
-				</div>
-				</a>
-			</div>
-		</div>
-
-		<div class="col-md-2">
 		</div>
 	</div>
 </div>

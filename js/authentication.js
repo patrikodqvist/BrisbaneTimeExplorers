@@ -1,4 +1,4 @@
-brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,$firebaseArray,$firebaseObject,$firebaseAuth,$window) {
+brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,$firebaseArray,$firebaseObject,$firebaseAuth,$window, Library) {
 	var ref = firebase.database().ref("users");
 	var object = $firebaseObject(ref);
 	var auth = $firebaseAuth();
@@ -21,15 +21,32 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 				user.password
 			).then(function(user){
 				console.log("login success");
-				$rootScope.loggedIn = true;
 				var userRef = ref.child(user.uid);
 	      		var userObj = $firebaseObject(userRef);
 	      		$rootScope.currentUser = userObj;
+	      		$rootScope.loggedIn = true;
 				if ($rootScope.loads == 3) {
+					$rootScope.errorMessage="";
 					$window.location.href = "#!/loading"; 
 				}
 			}).catch(function(error) {
+				$rootScope.loggedIn = false;
 				$rootScope.errorMessage = error.message;
+			    Library.loading=false;
+			    Library.tempArray=[]; 
+			    $rootScope.loads = 0;
+			    $rootScope.realEstate = [];
+			    $rootScope.queenslandPictures = [];
+			    $rootScope.photographs = [];
+				//$window.location.href = "#!/login";
+				var user = firebase.auth().currentUser;
+				var credential = firebase.auth.EmailAuthProvider.credential(user.email, userProvidedPassword);
+				// Prompt the user to re-provide their sign-in credentials
+				user.reauthenticate(credential).then(function() {
+  				// User re-authenticated.
+				}, function(error) {
+  				// An error happened.
+				});
 			});
 		},
 		//Creates a New User, and signs the new user.
@@ -48,6 +65,7 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 						clues: '',
 						shoes: '',
 						pants: '',
+						avatarIMG: '',
 						jumper: '',
 						currancy: 0,
 						levelOne: '',
@@ -75,9 +93,9 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 				ref.child($rootScope.currentUser.id).child("levelThree").set(markers);
 			}
 			else {
-				console.log(markers);
 				ref.child($rootScope.currentUser.id).child("levelFour").set(markers).then(function() {
 					console.log("success");
+					$rootScope.errorMessage="";
 					//Sends the user to customize its character
 					$window.location.href = "#!/character";
 				});
@@ -91,6 +109,15 @@ brissyGame.factory('Authentication',function ($rootScope,$resource,$cookieStore,
 		//Adds money to the user
 		addMoney:function(money) {
 			ref.child($rootScope.currentUser.id).child("currancy").set(money);
+		},
+		//Adds the images to the character
+		addImages:function(avatarIMG,top,bottom,shoes) {
+			ref.child($rootScope.currentUser.id).child("avatarIMG").set(avatarIMG);
+			ref.child($rootScope.currentUser.id).child("jumper").set(top);
+			ref.child($rootScope.currentUser.id).child("pants").set(bottom);
+			ref.child($rootScope.currentUser.id).child("shoes").set(shoes).then(function(){
+				$window.location.href = "#!/levelmenu";
+			});
 		},
 	    // Require Authentication
 		requireAuth: function() {
